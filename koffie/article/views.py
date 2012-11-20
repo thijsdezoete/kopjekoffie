@@ -5,5 +5,4 @@ from django.shortcuts import render_to_response
 @login_required
 def index(request):
     something = Article.objects.all()
-    print something
     return render_to_response('article/index.html', {'articles':something})

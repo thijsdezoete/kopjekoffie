@@ -1,13 +1,19 @@
 # Django settings for koffie project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Thijs de Zoete', 'thijsdezoete@gmail.com'),
 )
 
 MANAGERS = ADMINS
+
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__) + '/../')  # Template folder hack
+MEDIA_ROOT = os.path.join(SITE_ROOT, 'static')
+MEDIA_URL = '/static/'
+ADMIN_MEDIA_PREFIX = '/media/'
 
 DATABASES = {
     'default': {
@@ -106,6 +112,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -116,6 +123,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.humanize',
+    'registration',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'article',
@@ -149,5 +158,17 @@ LOGGING = {
         },
     }
 }
+
+
+LOGIN_URL = '/login/'
+
+# DjangoRegistration settings
+ACCOUNT_ACTIVATION_DAYS = 7
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'testing@example.com'
 
 from settings_env import *

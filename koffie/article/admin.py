@@ -3,7 +3,7 @@ from article.models import Article
 from article.models import Tag
 from article.models import Article_Tags
 
-class TagInline(admin.StackedInline):
+class TagInline(admin.TabularInline):
     model = Article.tags.through
     extra = 3
 

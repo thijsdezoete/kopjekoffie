@@ -17,6 +17,11 @@ class Article(models.Model):
     votes_up = models.IntegerField(default=1)
     votes_down = models.IntegerField(default=0)
 
+    def nice_name(self):
+        return self.__unicode__()
+
+    def all_tags(self):
+        return ', '.join([tag.name for tag in self.tags.all()])
 
     def __unicode__(self):
         if not self.name: 
@@ -29,3 +34,4 @@ class Article_Tags(models.Model):
     article = models.ForeignKey(Article)
     tag = models.ForeignKey(Tag)
     #count = models.IntegerField(default=1)
+

@@ -14,6 +14,7 @@ class ArticleAdmin(admin.ModelAdmin):
         ('Votes', {'fields': ['votes_up', 'votes_down'], 'classes': ['collapse']}),
     ]
     inlines = [TagInline]
+    list_display = ('nice_name', 'all_tags', 'votes_up', 'added_date')
 
 
 admin.site.register(Tag)

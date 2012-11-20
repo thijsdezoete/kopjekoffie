@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'koffie.views.home', name='home'),
+    url(r'^$', 'article.views.index', name='home'),
     # url(r'^koffie/', include('koffie.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

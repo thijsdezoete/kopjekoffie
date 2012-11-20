@@ -160,7 +160,7 @@ LOGGING = {
 }
 
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/accounts/login/'
 
 # DjangoRegistration settings
 ACCOUNT_ACTIVATION_DAYS = 7

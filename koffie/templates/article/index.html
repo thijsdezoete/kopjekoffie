@@ -1,0 +1,10 @@
+{% extends "article/base.html" %}
+{% block content %}
+<ul>
+{% for article in articles %}
+    <li>({{article.all_tags}}) <a href="{{article.link}}" target="_blank">{{article}}</a> - [{{article.votes_up}} up / {{article.votes_down}} down]</li>
+{% endfor %}
+</ul>
+
+
+{% endblock content %}

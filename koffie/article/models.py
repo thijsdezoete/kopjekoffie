@@ -19,6 +19,7 @@ class Article(models.Model):
 
     def nice_name(self):
         return self.__unicode__()
+    nice_name.short_description = "name"
 
     def all_tags(self):
         return ', '.join([tag.name for tag in self.tags.all()])

@@ -19,7 +19,7 @@ def prepare_deploy():
     push()
 
 def deploy():
-    prepare_deploy()
+    #prepare_deploy()
     code_dir = '/opt/domains/kopjekoffie.eu/src/kopjekoffie'
     with settings(warn_only=True):
         if run("test -d %s" % code_dir).failed:

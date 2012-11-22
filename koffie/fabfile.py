@@ -1,7 +1,8 @@
 from __future__ import with_statement
-from fabric.api import local
-from fabric.api import local, settings, abort, run, cd
+from fabric.api import *
 from fabric.contrib.console import confirm
+
+env.hosts = ['seastar']
 
 def test():
     local('./manage.py test article')
@@ -18,6 +19,7 @@ def prepare_deploy():
     push()
 
 def deploy():
+    prepare_deploy()
     code_dir = '/opt/domains/kopjekoffie.eu/src/kopjekoffie'
     with settings(warn_only=True):
         if run("test -d %s" % code_dir).failed:

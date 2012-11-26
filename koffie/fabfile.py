@@ -29,4 +29,7 @@ def deploy():
             code_dir = '/opt/domains/kopjekoffie.eu/src/kopjekoffie'
     with cd(code_dir):
          run("git pull")
-         run("touch app.wsgi")
+         run("find . -type f -name '*.pyc'")
+         run("find . -type f -name '*.pyc' -exec rm {} \; ;")
+    with cd(code_dir + '/koffie'):
+         run("sudo uwsgi --ini=uwsgi.ini")

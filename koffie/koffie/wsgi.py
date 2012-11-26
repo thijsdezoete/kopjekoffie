@@ -14,6 +14,9 @@ framework.
 
 """
 import os
+import site
+
+site.addsitedir('/home/thijs/virtualenvs/kopjekoffie/lib/python2.7/site-packages')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "koffie.settings")
 

@@ -30,9 +30,9 @@ def deploy():
     with cd(code_dir):
          run("git pull")
          run("find . -type f -name '*.pyc'")
-         run("find . -type f -name '*.pyc' -exec rm {} \; ;")
-         run("./manage.py collectstatic")
+         run("find . -type f -name '*.pyc' -delete ;")
     with cd(code_dir + '/koffie'):
+         run("./manage.py collectstatic")
          run("sudo uwsgi --ini=uwsgi.ini")
     with cd(code_dir + '/koffie/static'):
          run('ln -s %s/templates/favicon.ico .')

@@ -14,7 +14,10 @@ class ArticleAdmin(admin.ModelAdmin):
         ('Votes', {'fields': ['votes_up', 'votes_down'], 'classes': ['collapse']}),
     ]
     inlines = [TagInline]
-    list_display = ('nice_name', 'all_tags', 'votes_up', 'added_date')
+    list_display = ('nice_name', 'all_tags', 'added_by', 'votes_up', 'added_date')
+    def save_model(self, request, obj, form, change):
+        obj.added_by = request.user
+        obj.save()
 
 
 admin.site.register(Tag)

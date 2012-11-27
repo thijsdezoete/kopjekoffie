@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Tag(models.Model):
@@ -13,6 +14,7 @@ class Article(models.Model):
     name = models.CharField(max_length=200, blank=True)
     added_date = models.DateTimeField('date added', auto_now_add=True)
     tags = models.ManyToManyField(Tag, blank=True, through='Article_Tags')
+    added_by = models.ForeignKey(User, related_name='added_by')
 
     votes_up = models.IntegerField(default=1)
     votes_down = models.IntegerField(default=0)

@@ -33,4 +33,4 @@ def deploy():
          run("find . -type f -name '*.pyc' -delete ;")
     with cd(code_dir + '/koffie'):
          run("/home/thijs/virtualenvs/kopjekoffie/bin/python ./manage.py collectstatic")
-         run("sudo uwsgi --ini=uwsgi.ini")
+         run("touch uwsgi_reload")

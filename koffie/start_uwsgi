@@ -1,0 +1,2 @@
+#!/bin/bash 
+sudo uwsgi --ini=uwsgi.ini --touch-reload=/opt/domains/kopjekoffie.eu/src/kopjekoffie/koffie/uwsgi_reload

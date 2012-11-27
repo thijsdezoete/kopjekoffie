@@ -1,10 +1,25 @@
 {% extends "article/base.html" %}
 {% block content %}
-<ul>
-{% for article in articles %}
-    <li>({{article.all_tags}}) <a href="{{article.link}}" target="_blank">{{article}}</a> - [{{article.votes_up}} up / {{article.votes_down}} down]</li>
-{% endfor %}
-</ul>
+{% if articles %}
+<div class="row-fluid">
+    <div class="span2">Tags</div>
+    <div class="span6">Link / Name</div>
+    <div class="span3">Votes up / Votes down</div>
+</div>
 
+{% for article in articles %}
+<div class="row-fluid">
+    <div class="span2">({% for tag in article.list_tags%}<a href="{% url article.views.browse_tag tag.name %}">{{tag.name}}</a>{%if forloop.last%}{%else%}, {%endif%}{% endfor %})</div>
+    <div class="span6"><a href="{{article.link}}" target="_blank">{{article}}</a></div>
+    <div class="span2">[ {{ article.votes_up }} up / {{ article.votes_down}} down]</div>
+</div>
+{% endfor %}
+</div>
+
+{% else %}
+        <div class="page-header">
+<h2>Sorry! Nothing has been shared yet!</h2>
+        </div>
+{%endif%}
 
 {% endblock content %}

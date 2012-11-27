@@ -1,9 +1,39 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Kofje koffie?</title>
+<title>Lekker Boeieund!</title>
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/static/app/sticky_footer.css" rel="stylesheet" media="screen">
 </head>
 <body>
-    {% block content %}{% endblock content %}
+<div id="wrap">
+	<div class="container">
+	{% block pageheader%}
+        <div class="page-header">
+<h1>Lekker boeieuh!!!</h1>
+        <ul class="nav nav-pills ">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        </div>
+	{%endblock pageheader %}
+        {% block content %}{% endblock content %}
+        {% block content-related %}{% endblock content-related %}
+	 <div id="push"></div>
+	</div>
+</div>
+	<div id="footer">
+		<div class="container">
+			<p class="muted credit">Lekker boeieuh!!! By <a href="http://www.about.me/thijsdezoete" target="_blank">Thijs de Zoete</a>.</p>
+		</div>
+	</div>
+</div>
+
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 

@@ -32,7 +32,7 @@ def deploy():
          run("find . -type f -name '*.pyc'")
          run("find . -type f -name '*.pyc' -delete ;")
     with cd(code_dir + '/koffie'):
-         run("./manage.py collectstatic")
+         run("/home/thijs/virtualenvs/kopjekoffie/bin/python ./manage.py collectstatic")
          run("sudo uwsgi --ini=uwsgi.ini")
     with cd(code_dir + '/koffie/static'):
-         run('ln -s %s/templates/favicon.ico .')
+         run('ln -fs %s/koffie/templates/favicon.ico .' % code_dir)

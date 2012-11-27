@@ -7,7 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'article.views.index', name='home'),
-    url(r'^tag/(?P<tagname>[a-zA-Z]{2,10})/$', 'article.views.browse_tag'),
+    url(r'^tag/(?P<tagname>[a-zA-Z]{2,20})/$', 'article.views.browse_tag'),
     url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/favicon.ico'}),
     # url(r'^koffie/', include('koffie.foo.urls')),
 

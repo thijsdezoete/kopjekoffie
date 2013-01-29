@@ -4,6 +4,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from forms import ArticleForm
+import ayah
+from django.conf import settings
 
 def index(request):
     something = Article.objects.all().order_by('-votes_up', '-added_date')
@@ -17,6 +19,7 @@ def browse_tag(request, tagname):
 
 @login_required
 def add_article(request):
+    ayah.configure(settings.AYAH_PUBLISHER_KEY, settings.AYAH_SCORING_KEY)
     if request.method == "POST":
         form = ArticleForm(request.POST)
         if form.is_valid():
@@ -24,18 +27,27 @@ def add_article(request):
             #message = form.cleaned_data['message']
             #sender = form.cleaned_data['sender']
             #cc_myself = form.cleaned_data['cc_myself']
+            print form.cleaned_data
+            #ayah_form_secret = form.cleaned_data['session_secret']
+            #if not ayah.score_result(ayah_form_secret):
+            #    print 'Didnt make it sadly....'
+            #    return HttpResponseRedirect('/')
+
         
             recipients = ['thijsdezoete@gmail.com']
             message = 'Tags: %s' % form.cleaned_data['tags']
             from django.core.mail import send_mail
             send_mail('New article: %s' % form.cleaned_data['link'], message, 'thijsdezoete@gmail.com', recipients)
-            request.META['wsgi.errors'].write('TEST')
+            #request.META['wsgi.errors'].write('TEST')
             return HttpResponseRedirect('/')
     else:
         form = ArticleForm()
 
     return render_to_response('article/add_article.html', 
-        {'form':form},
+        {
+        'form':form,
+        'ayah': ayah.get_publisher_html()
+        },
         context_instance=RequestContext(request)
     )
 

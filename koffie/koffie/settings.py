@@ -171,4 +171,10 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'testing@example.com'
 
+# Get are you a human stuff in place
+AYAH_PUBLISHER_KEY = "secret"
+AYAH_SCORING_KEY = "secret"
+
+
 from settings_env import *
+

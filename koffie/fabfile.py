@@ -3,6 +3,7 @@ from fabric.api import *
 from fabric.contrib.console import confirm
 
 env.hosts = ['seastar']
+env.user = 'thijs'
 
 def test():
     local('./manage.py test article')

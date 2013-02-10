@@ -30,16 +30,26 @@ def add_article(request):
 
 
             ayah_form_secret = form.data.get('session_secret')
-            if not ayah.score_result(ayah_form_secret):
+            if not settings.DEBUG and not ayah.score_result(ayah_form_secret):
                 return HttpResponseRedirect('/')
 
         
-            recipients = ['thijsdezoete@gmail.com']
+            recipients = settings.DEFAULT_FROM_EMAIL #['thijsdezoete@gmail.com']
             message = 'Url - %s Tags: %s' % (form.cleaned_data['link'], form.cleaned_data['tags'])
+
+            test = form.save(commit=False)
+            # Add user
+            test.added_by = request.user
+            test.save()
+
+            article_id = Article.objects.get(id=test.id)
+
+            for tag in form.cleaned_data['tags']:
+                # Add the tags to the article
+                Article_Tags(article=article_id, tag=tag).save()
+
             from django.core.mail import send_mail
             send_mail('New article: %s' % form.cleaned_data['link'], message, 'thijsdezoete@gmail.com', recipients)
-            #request.META['wsgi.errors'].write('TEST')
-            form.save()
             return HttpResponseRedirect('/')
     else:
         form = ArticleForm()

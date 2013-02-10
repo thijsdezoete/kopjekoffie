@@ -34,7 +34,7 @@ def add_article(request):
                 return HttpResponseRedirect('/')
 
         
-            recipients = settings.DEFAULT_FROM_EMAIL #['thijsdezoete@gmail.com']
+            recipients = [settings.DEFAULT_FROM_EMAIL]
             message = 'Url - %s Tags: %s' % (form.cleaned_data['link'], form.cleaned_data['tags'])
 
             test = form.save(commit=False)

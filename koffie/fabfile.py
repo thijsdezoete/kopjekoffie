@@ -9,8 +9,8 @@ def test():
     local('./manage.py test article')
 
 def commit():
-    local('git pull')
     local('git add -p && git commit')
+    local('git pull')
 
 def push():
     local('git push origin master')

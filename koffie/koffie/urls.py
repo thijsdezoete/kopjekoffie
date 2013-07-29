@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     #url(r'^$', 'article.views.index', name='home'),
     #url(r'^tag/(?P<tagname>[a-zA-Z]{2,20})/$', 'article.views.browse_tag'),
-    url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/favicon.ico'}),
+    url(r'^favicon\.ico$', 'django.views.generic.RedirectView', {'url': '/static/favicon.ico'}),
     url(r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
     (r'^', include('article.urls')),
 

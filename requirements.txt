@@ -1,8 +1,8 @@
-Django==1.4.2
+Django==1.5.1
 Fabric==1.5.3
 are-you-a-human==1.0.5
 argparse==1.2.1
-django-registration==0.8
+django-registration==0.9b1
 paramiko==1.9.0
 pycrypto==2.6
 wsgiref==0.1.2

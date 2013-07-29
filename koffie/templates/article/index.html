@@ -9,26 +9,40 @@
 
 {% for article in articles %}
 <div class="row-fluid">
-    <div class="span2">({% for tag in article.list_tags%}<a href="{% url article.views.browse_tag tag.name %}">{{tag.name}}</a>{%if forloop.last%}{%else%}, {%endif%}{% endfor %})</div>
+    <div class="span2">({% for tag in article.list_tags%}<a href="{% url 'article.views.browse_tag' tag.name %}">{{tag.name}}</a>{%if forloop.last%}{%else%}, {%endif%}{% endfor %})</div>
     <div class="span6"><a href="{{article.link}}" target="_blank">{{article}}</a></div>
     <div class="span2">[ {{ article.votes_up }} up / {{ article.votes_down}} down]</div>
 </div>
-{% endfor %}
+{% if forloop.counter == 3 %}
 <div class="row-fluid">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- boeie -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="{{ ads.client }}"
+     data-ad-slot="{{ ads.slot }}"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+{% endif %}
+{% endfor %}
+<!--<div class="row-fluid">
     <div class="span10" id="land">
-	<script type="text/javascript"><!--
+	<script type="text/javascript">
 	google_ad_client = "ca-pub-3483749879476537";
 	/* boeieu */
 	google_ad_slot = "3994771491";
 	google_ad_width = 468;
 	google_ad_height = 60;
-	//-->
+	//
 	</script>
 	<script type="text/javascript"
 	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script>
     </div>
 </div>
+-->
 
 {% else %}
         <div class="page-header">
